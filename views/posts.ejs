@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") %> 
+<div class="container">
+<% if(locals.pTitle && locals.pContent){%>
+<div class="container d-flex p-2 justify-content-center flex-wrap gap-5">
+  <% posts.forEach(post => { %>
+  <div class="card col-6" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title"><%= pTitle %></h5>
+      <p class="card-text" style="text-align: justify; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;"><%= pContent%></p>
+      <a href="#" class="card-link text-decoration-none" ><%= moment().format('Do MMMM, YYYY'); %></a>
+    </div>
+  </div>
+  <% }); %>
+</div>
+<% }else{ %>
+<div class="container" style="height: 100vh">
+  <h1 class="text-center">Oops there are no posts here yet!</h1>
+</div>
+<% } %>
+<a href="/post" class=" plus-btn btn btn-dark btn-lg rounded-circle" role="button" >+</a>
+</div> 
+</div>
+<%- include("partials/footer.ejs") %>

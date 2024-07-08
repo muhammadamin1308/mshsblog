@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title> Evergreen
+    </title>
+    <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="margin:110;padding:0">
+    <font face="Magneto" size="16"><div  id="fixedheader">189</div></font>
+    <style type="text/css">
+        body {
+            background-color: #CCC;
+            margin: 80px 80px 100px 100px;
+        }
+
+        .boxed {
+            border: 1px solid #333;
+            background: #999;
+            margin-top: 30px;
+            border-bottom-right-radius: 25px;
+            border-top-right-radius: 25px;
+            border-top-left-radius: 10px;
+        }
+
+        div#fixedheader {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            color: #CCC;
+            background: #333;
+            padding: 20px;
+        }
+
+        div#fixedfooter {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            color: #CCC;
+            background: #333;
+            padding: 8px;
+        }
+    </style>
+    <center><font face="Segoe UI"> <ul style="list-style: none;" id="list-all-the-facts-given">
+
+    </ul>
+
+
+ <script type="text/javascript">
+      (function(){
+      Parse.initialize("uZXJE7ChTK3XMvs3Nsf8hE5ivHWiGLpEimGAnUp1", "zJ9PQfiin6ZY9FXSqxFvYmuA9uOhsRz64jTWoExL");
+
+      function getInformation() {
+       console.log("Hi");
+       var query = new Parse.Query( "SomeFacts" );
+       query.find({ success: function( results ) {
+          var output = "";
+          for (var i in results) {
+            var theInformation = results[i].get("actualInformation");
+            var theSource = results[i].get("actualSources");
+            var theHeadline = results[i].get("actualTitle");  
+            output += "<li>";
+            output += "<div class=\"boxed\">"  
+            output += "<font face=\"Arial\"<pre><h2>" + theHeadline + "</h2></pre></font>";
+            output += "<p>" + theInformation + "</p>";
+            output += "<a href=\"" + "http://" + theSource + "\"" + ">" + "Source: " + "(" + theSource + ")" + "</a>";
+            output += "<h5></h5>"  
+            output += "</div>";  
+            output += "</li>";
+          }      
+        document.getElementById("list-all-the-facts-given").innerHTML = output;
+
+        }, error: function( error ) {
+          alert("There was an error, this error is " + error.message );
+        }
+      })
+     }
+
+
+          getInformation();
+
+          function doPrompt() {
+     var SomeFacts = Parse.Object.extend("SomeFacts");
+     var theFacts = new SomeFacts();
+     var theHeadline = prompt("Enter title for the information:");      
+     var supplyInfo = prompt("Enter information:");      
+     var supplySRC = prompt("Enter source:");
+     theFacts.set( "actualInformation" , supplyInfo );
+     theFacts.set("actualSources", supplySRC);
+     theFacts.set("actualTitle", theHeadline);      
+     theFacts.save(null, {
+       success: function(theFacts) {
+           console.log("Objects was saved successfully. Object ID: " + theFacts.id);
+       },
+       error: function(theFacts, error) {
+         alert('Failed to create new object, with error code: ' + error.message);
+       }
+     })
+          }
+          doPrompt();
+    getInformation();
+  })();
+
+
+    </script></font></center>
+<a href="#" class="btn">Add Information</a>
+<style type="text/css">
+.btn {
+    bottom: 0;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #333;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+    position: fixed;
+}
+
+.btn:hover {
+  background: #AAA;
+  text-decoration: none;
+}
+  </style>
+
+</body>
+</html>
