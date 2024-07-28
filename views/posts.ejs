@@ -1,12 +1,13 @@
 <%- include("partials/header.ejs") %> 
 <div class="container">
-<% if(locals.pTitle && locals.pContent){%>
+
+<% if(locals.newPostContent && locals.newPostContent.length > 0){%>
 <div class="container d-flex p-2 justify-content-center flex-wrap gap-5">
-  <% posts.forEach(post => { %>
+  <% locals.newPostContent.forEach(post => { %>
   <div class="card col-6" style="width: 18rem">
     <div class="card-body">
-      <h5 class="card-title"><%= pTitle %></h5>
-      <p class="card-text" style="text-align: justify; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;"><%= pContent%></p>
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.content%></p>
       <a href="#" class="card-link text-decoration-none" ><%= moment().format('Do MMMM, YYYY'); %></a>
     </div>
   </div>

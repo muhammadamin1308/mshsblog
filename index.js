@@ -4,8 +4,9 @@ import moment from "moment"
 
 const app = express();
 const port = 3000;
-const date = new Date();
-// let posts = []
+
+let posts = []
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -13,7 +14,8 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 app.get("/all-post", (req, res) => {
-  res.render("posts.ejs");
+  // res.render("posts.ejs");
+  res.render("posts.ejs", {newPostContent: posts, moment: moment });
 });
 app.get("/contact", (req, res) => {
   res.render("contact.ejs");
@@ -25,14 +27,13 @@ app.get("/post", (req, res) => {
 app.post("/all-post", (req, res) => {
   const newPostTitle = req.body.postTitle;
   const newPostContent = req.body.postContent;
-let posts = [
-  {
-    titlePost: newPostTitle,
-    contentPost: newPostContent,
-  }]
-  // posts.push(postObj)
-  // console.log(posts)
-  res.render("posts.ejs", { posts: posts, pTitle: posts.titlePost, pContent: posts.contentPost, moment: moment });
+  const postObj = {
+    title: newPostTitle,
+    content: newPostContent
+  };
+
+  posts.push(postObj)
+  res.render("posts.ejs", {newPostContent: posts, moment: moment });
 });
 
 

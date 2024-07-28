@@ -1,20 +1,28 @@
-*{
-    font-family: "Kode Mono", monospace;
+* {
+  font-family: "Kode Mono", monospace;
 }
-.home-h1{
-    font-size: 10rem;
-    /* margin-top: 150px; */
+.home-h1 {
+  font-size: 10rem;
+  /* margin-top: 150px; */
 }
-.home-h3{
-    margin-top: 150px;
-}
-
-.svg{
-    margin-top: 50px;
+.home-h3 {
+  margin-top: 150px;
 }
 
-.plus-btn{
-    position:fixed;
-    bottom: 10%;
-    right: 5%;
+.svg {
+  margin-top: 50px;
+}
+
+.plus-btn {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+}
+
+.card-text {
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
